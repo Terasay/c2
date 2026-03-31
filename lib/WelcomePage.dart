@@ -10,7 +10,7 @@ class WelcomePage extends StatefulWidget {
 class _WelcomePageState extends State<WelcomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+  return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
@@ -18,27 +18,52 @@ class _WelcomePageState extends State<WelcomePage> {
             fit: BoxFit.cover
           ),
         ),
-        // Теперь Center находится внутри фонового Container
-        child: Center(
-          child: Container(
-            width: 600,
-            height: 400,
-            padding: const EdgeInsets.all(32),
-            decoration: BoxDecoration(
-              color: Colors.black.withOpacity(0.5),
-              borderRadius: BorderRadius.circular(16),
-            ),
-            child: const Center(
-              child: Text(
-                'Текст',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
+
+        child: Stack(
+          children: [
+            Center(
+              child: Container(
+                width: 850,
+                height: 550,
+                padding: const EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  color: Colors.black.withOpacity(0.6),
+                  borderRadius: BorderRadius.circular(16),
                 ),
-              )
+
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: const [
+                    SizedBox(height: 40),
+
+                    Text(
+                      'Thank you for choosing to dine here.',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 72,
+                        fontWeight: FontWeight.w400,
+                        
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
-          ),
+
+
+            SafeArea(
+              child: Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Image.asset(
+                  'assets/images/logo.png', 
+                  width: 140, 
+                  height: 140,
+                ),
+              ),
+            ),
+            
+          ],
         ),
       ),
     );
