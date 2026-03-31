@@ -12,21 +12,22 @@ class _WelcomePageState extends State<WelcomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-          decoration: const BoxDecoration(
-            image: DecorationImage(image: AssetImage('assets/images/RACLETTE.jpg'), fit: BoxFit.cover),
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/RACLETTE.jpg'), 
+            fit: BoxFit.cover
+          ),
         ),
-      ),
+        // Теперь Center находится внутри фонового Container
         child: Center(
           child: Container(
             width: 600,
             height: 400,
             padding: const EdgeInsets.all(32),
-
             decoration: BoxDecoration(
               color: Colors.black.withOpacity(0.5),
               borderRadius: BorderRadius.circular(16),
             ),
-
             child: const Center(
               child: Text(
                 'Текст',
@@ -39,6 +40,7 @@ class _WelcomePageState extends State<WelcomePage> {
             ),
           ),
         ),
+      ),
     );
   }
 }
