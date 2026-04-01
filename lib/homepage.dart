@@ -53,15 +53,15 @@ class _HomePageState extends State<HomePage> {
             color: Colors.white,
             child: Column (
               children: [
-                const SizedBox(height: 30),
+                const SizedBox(height: 60),
 
-                _buildCategoryItem(0, 'Main dishes', Image.asset('assets/icons/icon_90.png', width: 24, height: 24)),
-                const SizedBox(height: 40),
+                _buildCategoryItem(0, 'Main dishes', Image.asset('assets/icons/icon_90.png', width: 60, height: 60)),
+                const SizedBox(height: 90),
 
-                _buildCategoryItem(1, 'Pasteries', Image.asset('assets/icons/icon_92.png', width: 24, height: 24)),
-                const SizedBox(height: 40),
+                _buildCategoryItem(1, 'Pasteries', Image.asset('assets/icons/icon_92.png', width: 60, height: 60)),
+                const SizedBox(height: 90),
 
-                _buildCategoryItem(2, 'Soups', Image.asset('assets/icons/icon_91.png', width: 24, height: 24)),
+                _buildCategoryItem(2, 'Soups', Image.asset('assets/icons/icon_91.png', width: 60, height: 60)),
               ],
             ),
           ),
@@ -88,13 +88,14 @@ class _HomePageState extends State<HomePage> {
         unselectedItemColor: Colors.grey,
         showSelectedLabels: true,
         showUnselectedLabels: false,
-        items: const [
+        selectedLabelStyle: const TextStyle(fontSize: 24, fontWeight: FontWeight.w400),
+        items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.list),
-            label: 'Menu',
+            icon: Image.asset('assets/icons/icon_39.png', width: 32, height: 32),
+            label: 'Ordered',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.home_outlined),
+            icon: Image.asset('assets/icons/icon_95.png', width: 32, height: 32),
             label: 'Home',
           ),
         ],
