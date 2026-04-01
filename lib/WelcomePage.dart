@@ -9,6 +9,9 @@ class WelcomePage extends StatefulWidget {
 }
 
 class _WelcomePageState extends State<WelcomePage> {
+  final TextEditingController _seatController = TextEditingController();
+  int _selectedDiners = 1;
+
   @override
   Widget build(BuildContext context) {
   return Scaffold(
@@ -25,7 +28,6 @@ class _WelcomePageState extends State<WelcomePage> {
             Center(
               child: Container(
                 width: 850,
-                // Убрали жесткую высоту (height: 550), чтобы плашка сама растягивалась
                 padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 20), 
                 decoration: BoxDecoration(
                   color: Colors.black.withOpacity(0.6),
@@ -33,7 +35,7 @@ class _WelcomePageState extends State<WelcomePage> {
                 ),
 
                 child: Column(
-                  mainAxisSize: MainAxisSize.min, // Указываем колонке занимать только нужную высоту
+                  mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     const Text(
@@ -50,7 +52,7 @@ class _WelcomePageState extends State<WelcomePage> {
                     const SizedBox(height: 40),
 
                     SizedBox(
-                      width: 700, // <-- Раньше тут было 500, уравняли с нижней частью
+                      width: 700,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -73,6 +75,7 @@ class _WelcomePageState extends State<WelcomePage> {
                                 borderSide: BorderSide.none,
                               ),
                             ),
+                            controller: _seatController,
                           ),
                         ],
                       ),
@@ -101,10 +104,13 @@ class _WelcomePageState extends State<WelcomePage> {
                             children: [
                               ElevatedButton(
                                 onPressed: () {
+                                  setState(() {
+                                    _selectedDiners = 1;
+                                  });
                                 },
                                 style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.white,
-                                  foregroundColor: Colors.black,
+                                  backgroundColor: _selectedDiners == 1 ? Colors.orange : Colors.white,
+                                  foregroundColor: _selectedDiners == 1 ? Colors.white : Colors.black,
                                   minimumSize: const Size(160, 50),
                                   textStyle: const TextStyle(fontSize: 24),
                                   shape: RoundedRectangleBorder(
@@ -116,10 +122,13 @@ class _WelcomePageState extends State<WelcomePage> {
 
                               ElevatedButton(
                                 onPressed: () {
+                                  setState(() {
+                                    _selectedDiners = 2;
+                                  });
                                 },
                                 style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.white,
-                                  foregroundColor: Colors.black,
+                                  backgroundColor: _selectedDiners == 2 ? Colors.orange : Colors.white,
+                                  foregroundColor: _selectedDiners == 2 ? Colors.white : Colors.black,
                                   minimumSize: const Size(160, 50),
                                   textStyle: const TextStyle(fontSize: 24),
                                   shape: RoundedRectangleBorder(
@@ -131,10 +140,13 @@ class _WelcomePageState extends State<WelcomePage> {
 
                               ElevatedButton(
                                 onPressed: () {
+                                  setState(() {
+                                    _selectedDiners = 3;
+                                  });
                                 },
                                 style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.white,
-                                  foregroundColor: Colors.black,
+                                  backgroundColor: _selectedDiners == 3 ? Colors.orange : Colors.white,
+                                  foregroundColor: _selectedDiners == 3 ? Colors.white : Colors.black,
                                   minimumSize: const Size(160, 50),
                                   textStyle: const TextStyle(fontSize: 24),
                                   shape: RoundedRectangleBorder(
@@ -146,10 +158,13 @@ class _WelcomePageState extends State<WelcomePage> {
 
                               ElevatedButton(
                                 onPressed: () {
+                                  setState(() {
+                                    _selectedDiners = 4;
+                                  });
                                 },
                                 style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.white,
-                                  foregroundColor: Colors.black,
+                                  backgroundColor: _selectedDiners == 4 ? Colors.orange : Colors.white,
+                                  foregroundColor: _selectedDiners == 4 ? Colors.white : Colors.black,
                                   minimumSize: const Size(160, 50),
                                   textStyle: const TextStyle(fontSize: 24),
                                   shape: RoundedRectangleBorder(
@@ -173,7 +188,7 @@ class _WelcomePageState extends State<WelcomePage> {
                         onPressed: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => const HomePage())
+                            MaterialPageRoute(builder: (context) => HomePage(seatNumber: _seatController.text, diners: _selectedDiners)),
                           );
                         },
                         style: ElevatedButton.styleFrom(
