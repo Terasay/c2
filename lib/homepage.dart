@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'shopcart.dart';
 
+
 class HomePage extends StatefulWidget {
   final String seatNumber;
   final int diners;

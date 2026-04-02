@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'paymentpage.dart';
 
 class ShoppingCartPage extends StatefulWidget {
   const ShoppingCartPage({super.key});
@@ -64,7 +65,7 @@ class _ShoppingCartPage extends State<ShoppingCartPage> {
             child: Container(color: Colors.black45),
           ),
           Align(
-            alignment: Alignment.bottomCenter,
+            alignment: Alignment.bottomRight,
             child: Container(
               height: screenHeight - panelTopGap,
               width: double.infinity,
@@ -110,9 +111,9 @@ class _ShoppingCartPage extends State<ShoppingCartPage> {
                           },
                         ),
                         Align(
-                          alignment: Alignment.bottomCenter,
+                          alignment: Alignment.bottomRight,
                           child: Padding(
-                            padding: const EdgeInsets.only(bottom: 30),
+                            padding: const EdgeInsets.only(bottom: 30, right: 30),
                             child: Material(
                               elevation: 8,
                               shadowColor: Colors.black26,
@@ -140,7 +141,13 @@ class _ShoppingCartPage extends State<ShoppingCartPage> {
                                     ),
                                     GestureDetector(
                                       onTap: () {
-                                        // 'заглушка'
+                                        Navigator.push(
+                                          context,
+                                          PageRouteBuilder(
+                                            opaque: false,
+                                            pageBuilder: (context, _, __) => const PaymentPage(),
+                                          ),
+                                        );
                                       },
                                       child: Container(
                                         height: 60,
