@@ -100,58 +100,74 @@ class _ShoppingCartPage extends State<ShoppingCartPage> {
                   ),
 
                   Expanded(
-                    child: ListView.builder(
-                      itemCount: cartItems.length,
-                      itemBuilder: (context, index) {
-                        return _buildCartItem(cartItems[index], index);
-                      },
-                    ),
-                  ),
-
-                  Container(
-                    padding: const EdgeInsets.all(20),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.1),
-                          spreadRadius: 1,
-                          blurRadius: 5,
-                          offset: const Offset(0, -3),
-                        ),
-                      ],
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
+                    child: Stack(
                       children: [
-                        Text(
-                          '€${totalPrice.toStringAsFixed(2)}',
-                          style: const TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(width: 20),
-
-                        ElevatedButton(
-                          onPressed: () {
-                            'заглушка';
+                        ListView.builder(
+                          padding: const EdgeInsets.only(bottom: 100),
+                          itemCount: cartItems.length,
+                          itemBuilder: (context, index) {
+                            return _buildCartItem(cartItems[index], index);
                           },
-                          style: ElevatedButton.styleFrom(
-                            foregroundColor: Colors.black,
-                            backgroundColor: Colors.orange,
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 40,
-                              vertical: 15,
+                        ),
+                        Align(
+                          alignment: Alignment.bottomCenter,
+                          child: Padding(
+                            padding: const EdgeInsets.only(bottom: 30),
+                            child: Material(
+                              elevation: 8,
+                              shadowColor: Colors.black26,
+                              borderRadius: BorderRadius.circular(30),
+                              child: Container(
+                                height: 60,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(30),
+                                ),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 24,
+                                      ),
+                                      child: Text(
+                                        '€${totalPrice.toStringAsFixed(2)}',
+                                        style: const TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    GestureDetector(
+                                      onTap: () {
+                                        // 'заглушка'
+                                      },
+                                      child: Container(
+                                        height: 60,
+                                        padding: const EdgeInsets.symmetric(
+                                          horizontal: 32,
+                                        ),
+                                        decoration: BoxDecoration(
+                                          color: Colors.yellow.shade600,
+                                          borderRadius: BorderRadius.circular(
+                                            30,
+                                          ),
+                                        ),
+                                        alignment: Alignment.center,
+                                        child: const Text(
+                                          'Submit',
+                                          style: TextStyle(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.black,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
                             ),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                          ),
-
-                          child: const Text(
-                            'Submit',
-                            style: TextStyle(fontWeight: FontWeight.bold),
                           ),
                         ),
                       ],
@@ -175,8 +191,8 @@ class _ShoppingCartPage extends State<ShoppingCartPage> {
             borderRadius: BorderRadius.circular(8),
             child: Image.asset(
               item['image'],
-              width: 80,
-              height: 80,
+              width: 150,
+              height: 120,
               fit: BoxFit.cover,
             ),
           ),
@@ -189,7 +205,7 @@ class _ShoppingCartPage extends State<ShoppingCartPage> {
                 Text(
                   item['name'],
                   style: const TextStyle(
-                    fontSize: 16,
+                    fontSize: 24,
                     fontWeight: FontWeight.bold,
                   ),
                   maxLines: 1,
@@ -197,7 +213,7 @@ class _ShoppingCartPage extends State<ShoppingCartPage> {
                 ),
                 Text(
                   (item['description'] as String?) ?? 'Delicious, tasty',
-                  style: const TextStyle(fontSize: 14, color: Colors.grey),
+                  style: const TextStyle(fontSize: 19, color: Colors.grey),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),
@@ -207,7 +223,7 @@ class _ShoppingCartPage extends State<ShoppingCartPage> {
                     Text(
                       '€${item['price']}',
                       style: const TextStyle(
-                        fontSize: 16,
+                        fontSize: 24,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -216,7 +232,7 @@ class _ShoppingCartPage extends State<ShoppingCartPage> {
                       '€${item['oldPrice']}',
                       style: const TextStyle(
                         color: Colors.grey,
-                        fontSize: 14,
+                        fontSize: 18,
                         decoration: TextDecoration.lineThrough,
                       ),
                     ),
@@ -226,47 +242,61 @@ class _ShoppingCartPage extends State<ShoppingCartPage> {
             ),
           ),
 
-          Row(
-            children: [
-              IconButton(
-                constraints: const BoxConstraints.tightFor(
-                  width: 32,
-                  height: 32,
-                ),
-                padding: EdgeInsets.zero,
-                icon: Image.asset(
-                  'assets/icons/icon_44.png',
-                  width: 14,
-                  height: 14,
-                  fit: BoxFit.contain,
-                ),
-                onPressed: () => _decrement(index),
-              ),
-              Container(
-                margin: const EdgeInsets.symmetric(horizontal: 5),
-                child: Text(
-                  '${item['quantity']}',
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
+          Container(
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.grey.shade300),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                InkWell(
+                  onTap: () => _decrement(index),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 10,
+                      vertical: 6,
+                    ),
+                    child: Image.asset(
+                      'assets/icons/icon_44.png',
+                      width: 21,
+                      height: 21,
+                      color: Colors.black,
+                    ),
                   ),
                 ),
-              ),
-              IconButton(
-                constraints: const BoxConstraints.tightFor(
-                  width: 32,
-                  height: 32,
+                Container(
+                  color: Colors.green,
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 14,
+                    vertical: 6,
+                  ),
+                  child: Text(
+                    '${item['quantity']}',
+                    style: const TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
                 ),
-                padding: EdgeInsets.zero,
-                icon: Image.asset(
-                  'assets/icons/icon_43.png',
-                  width: 14,
-                  height: 14,
-                  fit: BoxFit.contain,
+                InkWell(
+                  onTap: () => _increment(index),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 10,
+                      vertical: 6,
+                    ),
+                    child: Image.asset(
+                      'assets/icons/icon_43.png',
+                      width: 21,
+                      height: 21,
+                      color: Colors.black,
+                    ),
+                  ),
                 ),
-                onPressed: () => _increment(index),
-              ),
-            ],
+              ],
+            ),
           ),
         ],
       ),
