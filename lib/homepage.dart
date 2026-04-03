@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'shopcart.dart';
+import 'orderedpage.dart';
 
 
 class HomePage extends StatefulWidget {
@@ -391,9 +392,16 @@ class _HomePageState extends State<HomePage> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _bottomNavIndex,
         onTap: (index) {
-          setState(() {
-            _bottomNavIndex = index;
-          });
+          if (index == 0) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const OrderedPage()),
+            );
+          } else {
+            setState(() {
+              _bottomNavIndex = index;
+            });
+          }
         },
         selectedItemColor: Colors.grey,
         unselectedItemColor: Colors.grey,
