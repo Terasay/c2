@@ -67,18 +67,18 @@ class _OrderedPage extends State<OrderedPage> {
                 borderRadius: BorderRadius.circular(8),
                 child: Image.asset(
                   item['image'],
-                  width: 80,
-                  height: 55,
+                  width: 160,
+                  height: 140,
                   fit: BoxFit.cover,
                   errorBuilder: (context, error, stackTrace) => Container(
-                    width: 80,
-                    height: 55,
+                    width: 160,
+                    height: 140,
                     color: Colors.grey.shade200,
                     child: const Icon(Icons.image_not_supported, color: Colors.grey),
                   ),
                 ),
               ),
-              const SizedBox(width: 15),
+              const SizedBox(width: 25),
               
               Expanded(
                 child: Column(
@@ -86,26 +86,26 @@ class _OrderedPage extends State<OrderedPage> {
                   children: [
                     Text(
                       item['name'],
-                      style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                      style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                     ),
-                    const SizedBox(height: 4),
+                    const SizedBox(height: 16),
                     Text(
                       item['description'],
-                      style: const TextStyle(color: Colors.grey, fontSize: 12),
+                      style: const TextStyle(color: Colors.grey, fontSize: 16),
                     ),
-                    const SizedBox(height: 6),
+                    const SizedBox(height: 12),
                     Row(
                       children: [
                         Text(
                           '€${item['price'].toStringAsFixed(2)}',
-                          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+                          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                         ),
-                        const SizedBox(width: 8),
+                        const SizedBox(width: 16),
                         Text(
                           '€${item['oldPrice'].toStringAsFixed(2)}',
                           style: const TextStyle(
                             color: Colors.grey,
-                            fontSize: 12,
+                            fontSize: 16,
                             decoration: TextDecoration.lineThrough,
                           ),
                         ),
