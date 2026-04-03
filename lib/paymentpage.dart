@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'orderedpage.dart';
 
 class PaymentPage extends StatefulWidget {
   const PaymentPage({super.key});
@@ -194,7 +195,9 @@ class _PaymentPage extends State<PaymentPage> {
                         ),
                         elevation: 0,
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => const OrderedPage()));
+                      },
                       child: const Text(
                         'Check out',
                         style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
